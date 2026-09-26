@@ -15,7 +15,7 @@ is yours.
 ## What is in it
 
     .devcontainer/          the environment: the InfraShift trusted neovim-go
-                            template (tmux, Neovim with a pinned LazyVim, Go),
+                            template (tmux, Neovim with a pinned LazyVim, Go) plus CUE,
                             plus the workspace runtime contract (see its README)
     Makefile, scripts/      the golden workflow -- the interface between this
                             repository and the forge; for a devcontainer
@@ -55,7 +55,7 @@ Nothing to configure. The platform renders the Nexus package-registry
 configuration into your login shell (`/etc/profile.d/package-proxies.sh`):
 `go` -- and `gopls` inside Neovim -- reads the Go group (`GOPROXY`) with no
 credential: Go refuses to send one over the plain-HTTP mesh hop, so the PEP
-admits Go module reads from the mesh by the workspace's mesh identity instead.
+admits Go module reads from the mesh by the workspace's mesh identity instead. `cue` needs no registry.
 Neovim itself fetches nothing: every LazyVim plugin, tree-sitter parser and
 formatter was installed when the image was built. See
 `RDW-DEV-GUIDE-NEOVIM-GO.md`.

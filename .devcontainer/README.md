@@ -9,7 +9,9 @@ Two things in one image, and the split is deliberate — see the header comment 
     version:   v1.0.3
 
 The `FROM` line, the package baseline and thirteen of the template's fourteen
-`features` are that template, digest-pinned and unmodified. A `devcontainer.json`
+`features` are that template, digest-pinned and unmodified. `cuelang` is added
+at the digest the trusted `go-cue` template v1.0.3 pins (same `bootstrap`), so
+CUE ships by default beside Go, as in the go-cue workspace. A `devcontainer.json`
 cannot *reference* a template at build time -- a template is applied, and what
 it produced is what is committed here -- so the provenance is recorded above and
 regenerated with:
@@ -23,6 +25,7 @@ regenerated with:
 
 | Change | Why |
 | --- | --- |
+| The `cuelang` feature is **added** | CUE by default beside Go, as in the go-cue workspace; pinned to the digest the trusted go-cue template v1.0.3 names, whose `bootstrap` is the one every other feature here depends on |
 | The `sshd` feature is **not** declared | The template's sshd is a rootless `dev` server started by `devcontainer up`, reading keys from `/run/secrets` and config from `/etc/ssh/sshd_config.d`. A workspace runs none of that: the devpod jobspec forces `entrypoint.sh` as root, and `config/sshd_config` *replaces* `/etc/ssh/sshd_config`, so the feature's drop-in would never be read. Two SSH setups, one of them dead |
 | The template's `dnf5 upgrade && dnf5 install` split into two `RUN` steps | The forge's pipeline mounts pinned repo files over `/etc/yum.repos.d` for each `RUN` step, and the upgrade rewrites them with Fedora's stock metalinks inside its own step; an `install` in the same step is then refused by the egress allow-list (CONNECT 403). A new step sees the pinned files again |
 | `containerUser: user` (uid 1001, **gid 0**) | The template creates `dev` (1001:1001). The platform contract is `user` in group 0, assumed by the portal's `WORKSPACE_SSH_USER`, `sshd_config`, the jobspec's volume-init chown and `/home/user/workspace` in the portal README |
@@ -51,7 +54,7 @@ make it here, in this repository, and let the forge build it.
 `make verify` in the devpod root asks the image which tools it declares
 (check 6). This image's list:
 
-    WORKSPACE_TOOLS=nvim,tmux,go,gopls,golangci-lint,dlv,make,jq,yq,git,git-lfs,syft,grype
+    WORKSPACE_TOOLS=nvim,tmux,go,gopls,golangci-lint,dlv,cue,make,jq,yq,git,git-lfs,syft,grype
 
 `tmux` in that list also turns on the check that an interactive login lands in
 the layout and a non-interactive one does not.

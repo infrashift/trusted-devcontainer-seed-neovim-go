@@ -3,9 +3,11 @@
 # The first half is the InfraShift trusted neovim-go devcontainer: the same
 # digest-pinned Fedora 43 base, the same package baseline, and thirteen of the
 # fourteen features the published template names. The fourteenth, `sshd', is
-# left out on purpose -- see section 2. The Dev Container CLI installs the
-# features from devcontainer.json; this file is the image they are installed
-# onto.
+# left out on purpose -- see section 2. One feature is ADDED: `cuelang', at the
+# digest the trusted go-cue template (v1.0.3) pins, which depends on the same
+# bootstrap as the rest -- CUE ships by default beside Go, as it does in the
+# go-cue workspace. The Dev Container CLI installs the features from
+# devcontainer.json; this file is the image they are installed onto.
 #
 # The second half is the WORKSPACE RUNTIME CONTRACT -- sshd, an entrypoint, a
 # skeleton project directory -- which the devpod jobspec assumes and a plain

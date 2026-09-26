@@ -1,5 +1,5 @@
 {
-    "name": "tmux + Neovim + Go workspace",
+    "name": "tmux + Neovim + Go + CUE workspace",
     "build": {
         "dockerfile": "./Containerfile"
     },
@@ -14,6 +14,7 @@
         "ghcr.io/infrashift/trusted-devcontainer-features/git@sha256:07a52095bed925bffa3ac3d35e657ec0a3bf66b8d9ce34fa546095f0a9c5794d": {},
         "ghcr.io/infrashift/trusted-devcontainer-features/git-lfs@sha256:adebb6fe392f33cd50cc49cd07f43c396301610338d9a1b3195241a901353561": {},
         "ghcr.io/infrashift/trusted-devcontainer-features/golang@sha256:66056134251846299c05cc8416fbe38417c7b601bb559a1414193f00db4b5bbc": {},
+        "ghcr.io/infrashift/trusted-devcontainer-features/cuelang@sha256:417051cbac4b4eb7dde6fa9e29c79d250fde98e4faab8fd8279ff3ce14f040e4": {},
         "ghcr.io/infrashift/trusted-devcontainer-features/make@sha256:a71d3c7a3495b679e7fa89635b0af142a42e1d8d94a6e7d5440ee09832bb4ece": {},
         "ghcr.io/infrashift/trusted-devcontainer-features/grype@sha256:c0d7cd4bc9410286f4cae1280229ffd82f4b9c5b959895e732146929afef55d8": {},
         "ghcr.io/infrashift/trusted-devcontainer-features/syft@sha256:3337c924df16599999703a7aeb547974953548579319ccf0ac4af7fd3b38f94e": {},
