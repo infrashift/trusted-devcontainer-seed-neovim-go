@@ -38,14 +38,25 @@ USER root
 # --- 1. The template's own package baseline -----------------------------------
 #
 # Feature prerequisites (tar, gzip, curl, util-linux) and the interactive
-# baseline fedora43-minimal ships none of. Kept identical to the template's
-# Containerfile so a template bump is a readable diff rather than a merge --
-# including its `upgrade' first: `dnf5 install' of a package the base already
-# carries is a no-op and never moves it to a newer build, so without the
-# upgrade the base image's curl and openssl-libs stay at whatever Fedora had
-# when it was built, which is what the CVE gate measures against.
+# baseline fedora43-minimal ships none of. The same packages as the template's
+# Containerfile, and its `upgrade' first: `dnf5 install' of a package the base
+# already carries is a no-op and never moves it to a newer build, so without
+# the upgrade the base image's curl and openssl-libs stay at whatever Fedora
+# had when it was built, which is what the CVE gate measures against.
+#
+# TWO RUN STEPS WHERE THE TEMPLATE HAS ONE, and that is the one change to it.
+# The forge's pipeline reaches Fedora only through the platform's egress
+# allow-list, so it mounts PINNED repo files over /etc/yum.repos.d for every
+# RUN step (ci/devcontainer.gitlab-ci.yml, "A RUNNER REACHES THE INTERNET ONLY
+# THROUGH SQUID"); writes there land in a per-step copy. The upgrade replaces
+# fedora-repos, which writes Fedora's stock repo files -- metalinks on
+# mirrors.fedoraproject.org -- into that copy, and an `install' later in the
+# SAME step reads them and is refused with CONNECT 403 (bill/neovim-go
+# pipeline 25, gcloud-dc 2026-09-25). A new step gets a fresh copy of the
+# pinned files. Off the platform the split changes nothing.
 RUN dnf5 -y upgrade --setopt=install_weak_deps=False \
-    && dnf5 -y install --allowerasing --setopt=install_weak_deps=False \
+    && dnf5 clean all && rm -rf /var/cache/dnf
+RUN dnf5 -y install --allowerasing --setopt=install_weak_deps=False \
         tar gzip curl util-linux unzip libicu openssl-libs \
         procps-ng diffutils findutils less which fzf \
     && dnf5 clean all && rm -rf /var/cache/dnf

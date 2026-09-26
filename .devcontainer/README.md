@@ -24,6 +24,7 @@ regenerated with:
 | Change | Why |
 | --- | --- |
 | The `sshd` feature is **not** declared | The template's sshd is a rootless `dev` server started by `devcontainer up`, reading keys from `/run/secrets` and config from `/etc/ssh/sshd_config.d`. A workspace runs none of that: the devpod jobspec forces `entrypoint.sh` as root, and `config/sshd_config` *replaces* `/etc/ssh/sshd_config`, so the feature's drop-in would never be read. Two SSH setups, one of them dead |
+| The template's `dnf5 upgrade && dnf5 install` split into two `RUN` steps | The forge's pipeline mounts pinned repo files over `/etc/yum.repos.d` for each `RUN` step, and the upgrade rewrites them with Fedora's stock metalinks inside its own step; an `install` in the same step is then refused by the egress allow-list (CONNECT 403). A new step sees the pinned files again |
 | `containerUser: user` (uid 1001, **gid 0**) | The template creates `dev` (1001:1001). The platform contract is `user` in group 0, assumed by the portal's `WORKSPACE_SSH_USER`, `sshd_config`, the jobspec's volume-init chown and `/home/user/workspace` in the portal README |
 | `openssh-server`, `openssh-clients` | Not in the trusted base. Without the server the workspace starts, reports its container healthy, and refuses every connection; without the client `git push` says `ssh: command not found` |
 | `entrypoint.sh`, `config/sshd_config`, `config/ssh-login.sh` | The workspace runtime contract — the third is the `ForceCommand` the second names |
