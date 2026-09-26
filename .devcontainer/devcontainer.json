@@ -23,6 +23,6 @@
         "ghcr.io/infrashift/trusted-devcontainer-templates/features/tmux@sha256:45a807381578a04cf4d3a40b7c89a38921cc07044b0f8ce0875349d001e3b78c": {},
         "ghcr.io/infrashift/trusted-devcontainer-templates/features/neovim@sha256:083f4694c1dfb59983f1c4d92caccfb08d1357bc3fa5d0c0c2f622b5cd369611": {},
         "ghcr.io/infrashift/trusted-devcontainer-templates/features/go-tools@sha256:9a33c691f473efb6daa8ccd6b708bb19b8b662d3ef6729570a9126b8d5004332": {},
-        "ghcr.io/infrashift/trusted-devcontainer-templates/features/lazyvim@sha256:2052ace8658b442c45ad8a4d155d52f8ca71362b282841fa6b922346072f5d16": {}
+        "ghcr.io/infrashift/trusted-devcontainer-templates/features/lazyvim@sha256:b174966720921252a4d479c48fc82d92d8cc2d7c6fffc35aafd7244e9ee6a827": {}
     }
 }
