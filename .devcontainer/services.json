@@ -1,0 +1,5 @@
+{
+  "_comment": "Companion services the forge builds beside the devcontainer and the devpod root deploys next to the workspace. Validated by the forge against its closed schema: a typo here is a red pull request naming this file. THIS SEED HAS NONE, AND NO DATABASE EITHER: an empty `services' list alone does not mean that -- the devpod root would deploy its built-in demo PostgreSQL beside the workspace -- so builtin_database:false says it. To add a companion, declare it here and drop builtin_database (the two together are refused); see the go-cue seed for a PostgreSQL one.",
+  "builtin_database": false,
+  "services": []
+}
