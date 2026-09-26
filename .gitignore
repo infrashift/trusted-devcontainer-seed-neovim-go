@@ -33,3 +33,7 @@ ssh_config
 .env
 *.env
 .envrc
+
+# Written by a local `devcontainer build`; the digest pins in devcontainer.json
+# are the lock, and CI never reads this file.
+.devcontainer/devcontainer-lock.json
