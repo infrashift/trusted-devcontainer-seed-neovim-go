@@ -6,7 +6,7 @@ Two things in one image, and the split is deliberate — see the header comment 
 ## What came from the trusted template
 
     template:  ghcr.io/infrashift/trusted-devcontainer-templates/neovim-go
-    version:   v1.0.3 (structure); feature digests as main pins them (c9130a5, #29)
+    version:   v1.0.3 (structure); feature digests as main pins them (15f68d3, #31)
 
 The `FROM` line, the package baseline and thirteen of the template's fourteen
 `features` are that template, digest-pinned at the digests the template's
@@ -26,7 +26,7 @@ regenerated with:
 
 | Change | Why |
 | --- | --- |
-| Every feature at the digest the template's `main` pins (trusted-devcontainer-templates c9130a5, #29), ahead of the latest template release (v1.0.4) | bootstrap **1.6.1** (`5f7d5081…`): uv 0.12.24 resolves CPython **3.14.8**, fixing CVE-2026-19445 (Critical) and CVE-2026-19553 (High) in 3.14.7. `lazyvim` **1.2.2** (`d78403d7…`) prints a `PARSERS_INSTALLED` report in every build and nvim-treesitter's errors when a parser is missing. Every feature depends on that one bootstrap. Return to a release's pins when a template release carries them |
+| Every feature at the digest the template's `main` pins (trusted-devcontainer-templates 15f68d3, #31), ahead of the latest template release (v1.0.4) | bootstrap **1.6.1** (`5f7d5081…`): uv 0.12.24 resolves CPython **3.14.8**, fixing CVE-2026-19445 (Critical) and CVE-2026-19553 (High) in 3.14.7. `lazyvim` **1.2.3** (`df2fb9e7…`) waits out LazyVim's own install of a tree-sitter parser (1.2.2 gave up after nvim-treesitter's 60 s and lost `vim` on 1-core runners), and prints a `PARSERS_INSTALLED` report in every build. Every feature depends on that one bootstrap. Return to a release's pins when a template release carries them |
 | The `cuelang` feature is **added** | CUE by default beside Go, as in the go-cue workspace; pinned to the digest the trusted go-cue template names on `main`, whose `bootstrap` is the one every other feature here depends on |
 | The `sshd` feature is **not** declared | The template's sshd is a rootless `dev` server started by `devcontainer up`, reading keys from `/run/secrets` and config from `/etc/ssh/sshd_config.d`. A workspace runs none of that: the devpod jobspec forces `entrypoint.sh` as root, and `config/sshd_config` *replaces* `/etc/ssh/sshd_config`, so the feature's drop-in would never be read. Two SSH setups, one of them dead |
 | The template's `dnf5 upgrade && dnf5 install` split into two `RUN` steps | The forge's pipeline mounts pinned repo files over `/etc/yum.repos.d` for each `RUN` step, and the upgrade rewrites them with Fedora's stock metalinks inside its own step; an `install` in the same step is then refused by the egress allow-list (CONNECT 403). A new step sees the pinned files again |
