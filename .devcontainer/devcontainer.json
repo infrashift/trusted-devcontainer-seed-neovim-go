@@ -10,19 +10,19 @@
         "VISUAL": "nvim"
     },
     "features": {
-        "ghcr.io/infrashift/trusted-devcontainer-features/bootstrap@sha256:7f5bc8021fc701d0141dc4937b9faebfc2abcadcb905530fd3513ee4ee5df70b": {},
-        "ghcr.io/infrashift/trusted-devcontainer-features/git@sha256:07a52095bed925bffa3ac3d35e657ec0a3bf66b8d9ce34fa546095f0a9c5794d": {},
-        "ghcr.io/infrashift/trusted-devcontainer-features/git-lfs@sha256:adebb6fe392f33cd50cc49cd07f43c396301610338d9a1b3195241a901353561": {},
-        "ghcr.io/infrashift/trusted-devcontainer-features/golang@sha256:66056134251846299c05cc8416fbe38417c7b601bb559a1414193f00db4b5bbc": {},
-        "ghcr.io/infrashift/trusted-devcontainer-features/cuelang@sha256:417051cbac4b4eb7dde6fa9e29c79d250fde98e4faab8fd8279ff3ce14f040e4": {},
-        "ghcr.io/infrashift/trusted-devcontainer-features/make@sha256:a71d3c7a3495b679e7fa89635b0af142a42e1d8d94a6e7d5440ee09832bb4ece": {},
-        "ghcr.io/infrashift/trusted-devcontainer-features/grype@sha256:c0d7cd4bc9410286f4cae1280229ffd82f4b9c5b959895e732146929afef55d8": {},
-        "ghcr.io/infrashift/trusted-devcontainer-features/syft@sha256:3337c924df16599999703a7aeb547974953548579319ccf0ac4af7fd3b38f94e": {},
-        "ghcr.io/infrashift/trusted-devcontainer-features/jq@sha256:3c69ad14e10268f5053cf4fcf1b4443015ed5632fe4fa84f9f1c424b701a8b03": {},
-        "ghcr.io/infrashift/trusted-devcontainer-features/yq@sha256:ed2da9c3811de12596d012778beb7d82192511d35e7c67da729f76514b7f13cb": {},
-        "ghcr.io/infrashift/trusted-devcontainer-templates/features/tmux@sha256:45a807381578a04cf4d3a40b7c89a38921cc07044b0f8ce0875349d001e3b78c": {},
-        "ghcr.io/infrashift/trusted-devcontainer-templates/features/neovim@sha256:083f4694c1dfb59983f1c4d92caccfb08d1357bc3fa5d0c0c2f622b5cd369611": {},
-        "ghcr.io/infrashift/trusted-devcontainer-templates/features/go-tools@sha256:9a33c691f473efb6daa8ccd6b708bb19b8b662d3ef6729570a9126b8d5004332": {},
-        "ghcr.io/infrashift/trusted-devcontainer-templates/features/lazyvim@sha256:b174966720921252a4d479c48fc82d92d8cc2d7c6fffc35aafd7244e9ee6a827": {}
+        "ghcr.io/infrashift/trusted-devcontainer-features/bootstrap@sha256:5f7d508100f879933cb307544aa7135eb1e238d4d2b2866443a7c27e24ec8b9d": {},
+        "ghcr.io/infrashift/trusted-devcontainer-features/git@sha256:b0376331c9c6053a1ace30d3b946b8ff2f3e8d8e0676eac96319bb210a6ad16b": {},
+        "ghcr.io/infrashift/trusted-devcontainer-features/git-lfs@sha256:23fbc69b4e739c0f3a0151c20f182ab115327f5aafe2c1b6207022416936396c": {},
+        "ghcr.io/infrashift/trusted-devcontainer-features/golang@sha256:f35826772a85bcf526f4f6b7dff553414a32fc1ef315d5590f6452ccae7d18a6": {},
+        "ghcr.io/infrashift/trusted-devcontainer-features/cuelang@sha256:4ac7c4061478877fdfd4852d1169cfa46b7ff1a93a310d8a7fde4bc5c19b13c2": {},
+        "ghcr.io/infrashift/trusted-devcontainer-features/make@sha256:efaa619faa0033c80a2fa932f7448fc0630a39647daf26d8b62886df3eb1b6fb": {},
+        "ghcr.io/infrashift/trusted-devcontainer-features/grype@sha256:08dfbb08019e32d597561a7bcb3bdcbf259be2ff6abe7c7c3f497b7143dff4c6": {},
+        "ghcr.io/infrashift/trusted-devcontainer-features/syft@sha256:64842995be43cfa8afa2ef4f5bd5f07a01d38ae1b6ca21011122f532c9e0b74c": {},
+        "ghcr.io/infrashift/trusted-devcontainer-features/jq@sha256:d5dabb81c9046908682e3b5ae80ac83852a1def185bcef67deb8591f3637d7b5": {},
+        "ghcr.io/infrashift/trusted-devcontainer-features/yq@sha256:95dbed71ab7359996a10abcffa33332cfacc80f6b44993a85be745adba9b39bb": {},
+        "ghcr.io/infrashift/trusted-devcontainer-templates/features/tmux@sha256:e52d9c61c9b7f5ba8840bf4584a285bd227dc6fdf61f9b632872bf5010c33412": {},
+        "ghcr.io/infrashift/trusted-devcontainer-templates/features/neovim@sha256:e7b45cdaa177df26769d7f4f0fdda17fc3c3dd31e8d6b15053a1afb049aaab97": {},
+        "ghcr.io/infrashift/trusted-devcontainer-templates/features/go-tools@sha256:fd4abd3c75a12b176a2abea36fb8ad1f9306bd9bfc751b66ea56bbedca0a0a11": {},
+        "ghcr.io/infrashift/trusted-devcontainer-templates/features/lazyvim@sha256:d78403d7e2332ff2dc54e4e33e1e12def2c55b426d58c5bfbc560900b3159815": {}
     }
 }

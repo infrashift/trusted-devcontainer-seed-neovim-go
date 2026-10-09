@@ -6,13 +6,13 @@ Two things in one image, and the split is deliberate — see the header comment 
 ## What came from the trusted template
 
     template:  ghcr.io/infrashift/trusted-devcontainer-templates/neovim-go
-    version:   v1.0.3
+    version:   v1.0.3 (structure); feature digests as main pins them (c9130a5, #29)
 
 The `FROM` line, the package baseline and thirteen of the template's fourteen
-`features` are that template, digest-pinned -- all but `lazyvim` unmodified (see
-below). `cuelang` is added
-at the digest the trusted `go-cue` template v1.0.3 pins (same `bootstrap`), so
-CUE ships by default beside Go, as in the go-cue workspace. A `devcontainer.json`
+`features` are that template, digest-pinned at the digests the template's
+`main` names (see below). `cuelang` is added at the digest the trusted `go-cue`
+template names (same `bootstrap`), so CUE ships by default beside Go, as in the
+go-cue workspace. A `devcontainer.json`
 cannot *reference* a template at build time -- a template is applied, and what
 it produced is what is committed here -- so the provenance is recorded above and
 regenerated with:
@@ -26,8 +26,8 @@ regenerated with:
 
 | Change | Why |
 | --- | --- |
-| `lazyvim` at **1.0.1** (`b1749667…`), ahead of the 1.0.0 the template v1.0.3 pins | 1.0.0 let lazy.nvim rewrite `lazy-lock.json` during install, so once a pinned plugin's upstream moved (nvim-treesitter, 2026-09-26) every build failed its own pin check. 1.0.1 restores from the shipped lockfile a second time (trusted-devcontainer-templates#16). Return to the template's pin when a template release carries it |
-| The `cuelang` feature is **added** | CUE by default beside Go, as in the go-cue workspace; pinned to the digest the trusted go-cue template v1.0.3 names, whose `bootstrap` is the one every other feature here depends on |
+| Every feature at the digest the template's `main` pins (trusted-devcontainer-templates c9130a5, #29), ahead of the latest template release (v1.0.4) | bootstrap **1.6.1** (`5f7d5081…`): uv 0.12.24 resolves CPython **3.14.8**, fixing CVE-2026-19445 (Critical) and CVE-2026-19553 (High) in 3.14.7. `lazyvim` **1.2.2** (`d78403d7…`) prints a `PARSERS_INSTALLED` report in every build and nvim-treesitter's errors when a parser is missing. Every feature depends on that one bootstrap. Return to a release's pins when a template release carries them |
+| The `cuelang` feature is **added** | CUE by default beside Go, as in the go-cue workspace; pinned to the digest the trusted go-cue template names on `main`, whose `bootstrap` is the one every other feature here depends on |
 | The `sshd` feature is **not** declared | The template's sshd is a rootless `dev` server started by `devcontainer up`, reading keys from `/run/secrets` and config from `/etc/ssh/sshd_config.d`. A workspace runs none of that: the devpod jobspec forces `entrypoint.sh` as root, and `config/sshd_config` *replaces* `/etc/ssh/sshd_config`, so the feature's drop-in would never be read. Two SSH setups, one of them dead |
 | The template's `dnf5 upgrade && dnf5 install` split into two `RUN` steps | The forge's pipeline mounts pinned repo files over `/etc/yum.repos.d` for each `RUN` step, and the upgrade rewrites them with Fedora's stock metalinks inside its own step; an `install` in the same step is then refused by the egress allow-list (CONNECT 403). A new step sees the pinned files again |
 | `containerUser: user` (uid 1001, **gid 0**) | The template creates `dev` (1001:1001). The platform contract is `user` in group 0, assumed by the portal's `WORKSPACE_SSH_USER`, `sshd_config`, the jobspec's volume-init chown and `/home/user/workspace` in the portal README |
